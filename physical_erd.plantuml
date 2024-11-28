@@ -1,0 +1,61 @@
+@startuml
+
+entity "User" {
+    + userId : int <<PK>>
+    + username : string
+    + password : string
+    + email : string
+    + createdAt : datetime
+}
+
+entity "Alert" {
+    + alertId : int <<PK>>
+    + message : string
+    + recipient : string
+    + threshold : int
+    + createdAt : datetime
+    + userId : int <<FK>>
+}
+
+entity "DataCollection" {
+    + dataId : int <<PK>>
+    + date : date
+    + location : string
+    + cases : int
+    + source : string
+    + userId : int <<FK>>
+}
+
+entity "Analysis" {
+    + analysisId : int <<PK>>
+    + startDate : date
+    + endDate : date
+    + location : string
+    + predictedCases : int
+    + dataId : int <<FK>>
+}
+
+entity "Report" {
+    + reportId : int <<PK>>
+    + type : string
+    + timeframe : string
+    + data : string
+    + userId : int <<FK>>
+}
+
+entity "Visualization" {
+    + visualizationId : int <<PK>>
+    + type : string
+    + data : string
+    + timeframe : string
+    + userId : int <<FK>>
+}
+
+User ||--o{ Alert : creates
+User ||--o{ DataCollection : submits
+User ||--o{ Report : generates
+User ||--o{ Visualization : creates
+DataCollection ||--o{ Analysis : generates
+Analysis ||--o{ Report : produces
+
+@enduml
