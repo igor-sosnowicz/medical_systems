@@ -1,0 +1,27 @@
+@startuml
+entity "User" {
+}
+
+entity "Alert" {
+}
+
+entity "Data Collection" {
+}
+
+entity "Analysis" {
+}
+
+entity "Report" {
+}
+
+entity "Visualization" {
+}
+
+User ||--o{ Alert : "creates"
+User ||--o{ "Data Collection" : "submits"
+User ||--o{ Report : "generates"
+User ||--o{ Visualization : "creates"
+"Data Collection" ||--o{ Analysis : "generates"
+Analysis ||--o{ Report : "produces"
+
+@enduml
