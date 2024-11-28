@@ -43,7 +43,7 @@
    - Po pierwszych 12 miesiącach należy obsłużyć do 5 000 użytkowników tygodniowo.
    
 3. **Bezpieczeństwo**:
-   - System powinien zapewniać bezpieczeństwo danych, w tym szyfrowanie danych w tranzycie i w spoczynku.
+   - System powinien zapewniać bezpieczeństwo danych, w tym szyfrowanie danych w tranzycie za pomocą protokołu HTTPs i w spoczynku za pomocą AES-256.
    - Powinien mieć mechanizmy autoryzacji i uwierzytelniania użytkowników.
 
 4. **Dostępność**:
