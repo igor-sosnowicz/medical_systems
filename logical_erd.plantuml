@@ -1,0 +1,60 @@
+@startuml
+entity "User" {
+    + userId
+    + username
+    + password
+    + email
+    + createdAt
+}
+
+entity "Alert" {
+    + alertId
+    + message
+    + recipient
+    + threshold
+    + createdAt
+    + userId
+}
+
+entity "Data Collection" {
+    + dataId
+    + date
+    + location
+    + cases
+    + source
+    + userId
+}
+
+entity "Analysis" {
+    + analysisId
+    + startDate
+    + endDate
+    + location
+    + predictedCases
+    + dataId
+}
+
+entity "Report" {
+    + reportId
+    + type
+    + timeframe
+    + data
+    + userId
+}
+
+entity "Visualization" {
+    + visualizationId
+    + type
+    + data
+    + timeframe
+    + userId
+}
+
+User ||--o{ Alert : creates
+User ||--o{ "Data Collection" : submits
+User ||--o{ Report : generates
+User ||--o{ Visualization : creates
+"Data Collection" ||--o{ Analysis : generates
+Analysis ||--o{ Report : produces
+
+@enduml
