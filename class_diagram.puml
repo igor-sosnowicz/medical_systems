@@ -1,0 +1,206 @@
+@startuml
+package Dataset {
+    class DataRows {
+        +version: int
+        +id: int
+        +sourceType: String
+        +dateRange: DateRange
+        +columns: List<String>
+        +rows: List<Map<String, Object>>
+    }
+
+    class DateRange {
+        +startDate: Date
+        +endDate: Date
+    }
+}
+
+class System {
+    +collectData(): void
+    +visualizeData(data: DataRows): Visualization
+    +generateNotifications(): void
+    +generateReports(reportType: String): Report
+}
+
+class DataCollector {
+    +collectSourceData(sourceType: String, dateRange: DateRange, location: String): DataRows
+    +sendDataToDatabase(data: DataRows): void
+}
+
+package DataAnalysis {
+class DataAnalyzer {
+    +predictInfections(data: DataRows): PredictionResult
+    +calculateStatistics(data: DataRows): StatisticsResult
+    +performMeanHypothesisTesting(data1: DataRows, data2: DataRows, hypothesis: String): HypothesisTestResult
+    +calculateProbabilityDistribution(data: DataRows): ProbabilityDistribution
+    +identifyCorrelations(data: DataRows): CorrelationResult
+}
+
+class StatisticsResult {
+    +mean: float
+    +median: float
+    +standardDeviation: float
+    +variance: float
+}
+
+class HypothesisTestResult {
+    +pValue: float
+    +isSignificant: boolean
+}
+
+class ProbabilityDistribution {
+    +distributionType: String
+    +parameters: Map
+}
+
+class CorrelationResult {
+    +correlationCoefficient: float
+    +significance: boolean
+}
+}
+
+class DataVisualizer {
+    +createDashboard(data: DataRows): Dashboard
+    +browseData(data: DataRows): DataView
+}
+
+class ReportGenerator {
+    +generatePDFReport(data: DataRows): PDFReport
+    +generateCSVReport(data: DataRows): CSVReport
+}
+
+class User {
+    +login(username: String, password: String): UserSession
+    +logout(): void
+    +register(username: String, password: String, email: String): boolean
+    +authorize(): boolean
+    +resetPassword(email: String): boolean
+    +updateProfile(profileData: Map): boolean
+    +getUserDetails(): UserDetails
+    +changePassword(oldPassword: String, newPassword: String): boolean
+}
+
+class Database {
+    +storeData(data: DataRows): void
+    +executeQueries(query: String): QueryResult
+    +createTable(tableName: String, columns: Map): void
+    +dropTable(tableName: String): void
+    +truncateTable(tableName: String): void
+    +backupData(): void
+    +restoreData(): void
+}
+package MachineLearning {
+    interface MachineLearningModel {
+        +trainModel(data: DataRows): void
+        +testModel(data: DataRows): TestResult
+        +saveModel(filePath: String): void
+        +loadModel(filePath: String): void
+        +evaluateModel(testData: DataRows): EvaluationResult
+        +predict(data: DataRows): PredictionResult
+    }
+
+    class DecisionTree implements MachineLearningModel {
+        -maxDepth: int
+        -minSamplesSplit: int
+        +trainModel(data: DataRows): void
+        +testModel(data: DataRows): TestResult
+        +saveModel(filePath: String): void
+        +loadModel(filePath: String): void
+        +evaluateModel(testData: DataRows): EvaluationResult
+        +predict(data: DataRows): PredictionResult
+    }
+
+    class RandomForest implements MachineLearningModel {
+        -nEstimators: int
+        -maxFeatures: String
+        +trainModel(data: DataRows): void
+        +testModel(data: DataRows): TestResult
+        +saveModel(filePath: String): void
+        +loadModel(filePath: String): void
+        +evaluateModel(testData: DataRows): EvaluationResult
+        +predict(data: DataRows): PredictionResult
+    }
+
+    class LSTM implements MachineLearningModel {
+        -layers: List
+        -learningRate: float
+        -epochs: int
+        +trainModel(data: DataRows): void
+        +testModel(data: DataRows): TestResult
+        +saveModel(filePath: String): void
+        +loadModel(filePath: String): void
+        +evaluateModel(testData: DataRows): EvaluationResult
+        +predict(data: DataRows): PredictionResult
+    }
+
+    class PredictionResult {
+        +predictedInfections: int
+        +confidenceLevel: float
+    }
+
+}
+
+class DataPreprocessor {
+    +cleanData(data: DataRows): DataRows
+    -extractFromCSV(filePath: String): DataRows
+    -extractFromJSON(filePath: String): DataRows
+    -extractFromDatabase(query: String): DataRows
+    -transformToStandardFormat(data: DataRows): DataRows
+    -loadToDatabase(data: DataRows): void
+    +normalizeData(data: DataRows): DataRows
+}
+
+
+package Notification {
+    class NotificationManager {
+        +generateAlerts(threshold: int): void
+        +customizeNotificationSettings(settings: NotificationSettings): void
+    }
+
+    class NotificationSettings {
+        +threshold: int
+        +notificationType: String
+    }
+}
+
+package WebApplication {
+    class FlaskApp {
+        +run(): void
+    }
+
+    class Controller {
+        +handleRequest(request: Request): Response
+    }
+
+    class View {
+        +renderTemplate(templateName: String, context: Map): Response
+    }
+
+    class UserInterface {
+        +showInterface(): void
+        +responsiveVersion(): void
+    }
+}
+
+System --> DataCollector
+System --> DataAnalyzer
+System --> DataVisualizer
+System --> NotificationManager
+System --> ReportGenerator
+System --> User
+System --> Database
+DataAnalyzer --> MachineLearningModel
+DataAnalyzer --> StatisticsResult
+DataAnalyzer --> HypothesisTestResult
+DataAnalyzer --> ProbabilityDistribution
+DataAnalyzer --> CorrelationResult
+DataAnalyzer --> DataPreprocessor
+DataCollector --> Database
+FlaskApp --> System
+FlaskApp --> UserInterface
+FlaskApp --> Controller
+FlaskApp --> View
+DecisionTree --> DataRows
+RandomForest --> DataRows
+LSTM --> DataRows
+@enduml
