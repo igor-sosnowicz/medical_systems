@@ -1,0 +1,132 @@
+@startuml
+object dataRows {
+    version = 1
+    id = 101
+    sourceType = "Hospital"
+    dateRange = dateRange
+    columns = ["PatientID", "InfectionStatus"]
+    rows = [{"PatientID": 1, "InfectionStatus": "Positive"}, {"PatientID": 2, "InfectionStatus": "Negative"}]
+}
+
+object dateRange {
+    startDate = "2023-01-01"
+    endDate = "2023-12-31"
+}
+
+object system {
+    collectData() = void
+    visualizeData(data: dataRows) = visualization
+    generateNotifications() = void
+    generateReports(reportType: "PDF") = report
+}
+
+object dataCollector {
+    collectSourceData(sourceType: "Hospital", dateRange: dateRange, location: "NYC") = dataRows
+    sendDataToDatabase(data: dataRows) = void
+}
+
+object dataAnalyzer {
+    predictInfections(data: dataRows) = predictionResult
+    calculateStatistics(data: dataRows) = statisticsResult
+    performMeanHypothesisTesting(data1: dataRows, data2: dataRows, hypothesis: "mean") = hypothesisTestResult
+    calculateProbabilityDistribution(data: dataRows) = probabilityDistribution
+    identifyCorrelations(data: dataRows) = correlationResult
+}
+
+object dataVisualizer {
+    createDashboard(data: dataRows) = dashboard
+    browseData(data: dataRows) = dataView
+}
+
+object reportGenerator {
+    generatePDFReport(data: dataRows) = pdfReport
+    generateCSVReport(data: dataRows) = csvReport
+}
+
+object user {
+    login(username: "user", password: "pass") = userSession
+    logout() = void
+    register(username: "user", password: "pass", email: "user@example.com") = true
+    authorize() = true
+    resetPassword(email: "user@example.com") = true
+    updateProfile(profileData: {"name": "User"}) = true
+    getUserDetails() = userDetails
+    changePassword(oldPassword: "oldPass", newPassword: "newPass") = true
+}
+
+object database {
+    storeData(data: dataRows) = void
+    executeQueries(query: "SELECT * FROM Data") = queryResult
+    createTable(tableName: "Data", columns: {"id": "int", "value": "String"}) = void
+    dropTable(tableName: "Data") = void
+    truncateTable(tableName: "Data") = void
+    backupData() = void
+    restoreData() = void
+}
+
+object notificationManager {
+    generateAlerts(threshold: 10) = void
+    customizeNotificationSettings(settings: notificationSettings) = void
+}
+
+object notificationSettings {
+    threshold = 10
+    notificationType = "Email"
+}
+
+object flaskApp {
+    run() = void
+}
+
+object controller {
+    handleRequest(request: request) = response
+}
+
+object view {
+    renderTemplate(templateName: "index.html", context: {"data": dataRows}) = response
+}
+
+object userInterface {
+    showInterface() = void
+    responsiveVersion() = void
+}
+
+object decisionTree {
+    maxDepth = 5
+    minSamplesSplit = 2
+    trainModel(data: dataRows) = void
+    testModel(data: dataRows) = testResult
+    saveModel(filePath: "model.dt") = void
+    loadModel(filePath: "model.dt") = void
+    evaluateModel(testData: dataRows) = evaluationResult
+    predict(data: dataRows) = predictionResult
+}
+
+object randomForest {
+    nEstimators = 100
+    maxFeatures = "auto"
+    trainModel(data: dataRows) = void
+    testModel(data: dataRows) = testResult
+    saveModel(filePath: "model.rf") = void
+    loadModel(filePath: "model.rf") = void
+    evaluateModel(testData: dataRows) = evaluationResult
+    predict(data: dataRows) = predictionResult
+}
+
+object lstm {
+    layers = [10, 20, 10]
+    learningRate = 0.01
+    epochs = 100
+    trainModel(data: dataRows) = void
+    testModel(data: dataRows) = testResult
+    saveModel(filePath: "model.lstm") = void
+    loadModel(filePath: "model.lstm") = void
+    evaluateModel(testData: dataRows) = evaluationResult
+    predict(data: dataRows) = predictionResult
+}
+
+object dataPreprocessor {
+    cleanData(data: dataRows) = dataRows
+    normalizeData(data: dataRows) = dataRows
+}
+@enduml
