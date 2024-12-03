@@ -129,4 +129,22 @@ object dataPreprocessor {
     cleanData(data: dataRows) = dataRows
     normalizeData(data: dataRows) = dataRows
 }
+
+dataCollector --|> system
+dataAnalyzer --|> system
+dataVisualizer --|> system
+reportGenerator --|> system
+user --|> system
+database --|> system
+notificationManager --|> system
+notificationSettings --|> notificationManager
+flaskApp --|> system
+controller --|> flaskApp
+view --|> flaskApp
+userInterface --|> flaskApp
+decisionTree --|> dataAnalyzer
+randomForest --|> dataAnalyzer
+lstm --|> dataAnalyzer
+dataPreprocessor --|> dataAnalyzer
+
 @enduml
