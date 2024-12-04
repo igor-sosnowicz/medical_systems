@@ -1,0 +1,19 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Person(user, "User", "A person interacting with the system")
+
+System_Boundary(webApp, "Web Application") {
+    Component(frontend, "Frontend", "React Components", "UI components rendering the interface for users")
+    Component(apiClient, "API Client", "JavaScript (Axios)", "Handles HTTP requests to the backend API")
+    Component(stateManagement, "State Management", "Redux", "Manages global state of the application")
+    Component(authentication, "Authentication", "React", "Handles user login and session management")
+}
+
+Rel(user, frontend, "Uses", "HTTPS")
+Rel(frontend, apiClient, "Makes API requests", "JSON/HTTPS")
+Rel(apiClient, stateManagement, "Updates global state", "JSON")
+Rel(frontend, authentication, "Handles authentication", "React")
+Rel(authentication, apiClient, "Sends login details", "HTTPS")
+
+@enduml
