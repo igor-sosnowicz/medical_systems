@@ -2,16 +2,17 @@
 !includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
 System_Boundary(apiServer, "API Server") {
-    Component(requestHandler, "Request Handler", "Django (Views/URLs)", "Handles incoming HTTP requests and routes them to appropriate views")
-    Component(authentication, "Authentication", "Django (JWT)", "Handles user login, registration, and session management")
-    Component(businessLogic, "Business Logic", "Django (Python)", "Contains the core logic for disease prediction, data processing, and more")
-    Component(aiModel, "AI Model Integration", "TensorFlow (Python)", "Runs disease prediction model based on incoming health data")
+    Component(requestHandler, "Request Handler", "Django", "Handles incoming HTTP requests and routes them to appropriate views")
+    Component(authentication, "Authentication", "Django", "Handles user login, registration, and session management")
+    Component(businessLogic, "Business Logic", "Django", "Contains the core logic for disease prediction, data processing, and more")
+    Component(aiModel, "AI Model Integration", "TensorFlow", "Runs disease prediction model based on incoming health data")
     Component(dbAccessLayer, "Database Access Layer", "Django ORM", "Handles interaction with the PostgreSQL database")
-    Component(externalAPI, "External API Integration", "Requests (Python)", "Manages communication with external health data APIs")
-    Component(notificationService, "Notification Service", "Django (Python)", "Fetches phone numbers from the database and sends notifications to the external service")
+    Component(externalAPI, "External API Integration", "Requests", "Manages communication with external health data APIs")
+    Component(notificationService, "Notification Service", "Django", "Fetches phone numbers from the database and sends notifications to the external service")
 }
 
 System_Ext(notificationSystem, "Notification System", "External service to send notifications (SMS)")
+System_Ext(healthAPI, "Health API", "External system providing health-related data")
 
 Rel(requestHandler, authentication, "Verifies user", "JSON/HTTPS")
 Rel(requestHandler, businessLogic, "Handles business logic requests", "JSON/HTTPS")
@@ -23,5 +24,6 @@ Rel(aiModel, businessLogic, "Returns predictions to", "JSON")
 Rel(businessLogic, notificationService, "Triggers notification request", "JSON/HTTPS")
 Rel(notificationService, dbAccessLayer, "Fetches user phone numbers", "SQL/ORM")
 Rel(notificationService, notificationSystem, "Sends notifications to", "HTTPS")
+Rel(externalAPI, healthAPI, "Gets data from healthAPI")
 
 @enduml
