@@ -1,4 +1,6 @@
 # Zadanie
+**Używanie diagramu C4 wymaga  C4-PlantUML z Githuba**
+
 Zaprojektuj system oprogramowania przewidujący momenty krytyczne zachorowań na choroby zakaźne.
 
 | Kroki do wykonania                                                  | Osoba odpowiedzialna  |
