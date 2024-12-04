@@ -5,7 +5,7 @@ Person(user, "User", "A person interacting with the system")
 
 System_Boundary(application, "Application") {
     Container(webApp, "Web Application", "React.js", "Frontend application that users interact with")
-    Container(apiServer, "API Server", "Django (Python)", "Handles API requests, authentication, communicates with the database, and runs the AI model")
+    Container(apiServer, "API Server", "Django", "Handles API requests, authentication, communicates with the database, and runs the AI model")
     ContainerDb(database, "Database", "PostgreSQL", "Stores application data")
 }
 
