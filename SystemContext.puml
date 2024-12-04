@@ -1,0 +1,14 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(user, "User", "A person interacting with the system")
+System(application, "Application", "The main system (web or mobile app)")
+System_Ext(notificationSystem, "Notification System", "Sends notifications (e.g., SMS)")
+System_Ext(healthAPI, "Health API", "External system providing health-related data")
+
+Rel(user, application, "Uses")
+Rel(application, notificationSystem, "Triggers notifications")
+Rel(application, healthAPI, "Fetches health-related data from")
+Rel(notificationSystem, user, "Sends notifications to")
+
+@enduml
